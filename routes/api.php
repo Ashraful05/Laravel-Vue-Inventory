@@ -17,6 +17,7 @@ Route::group([
 //    Route::post('me', 'AuthController@me');
 
 
+    Route::post('register',[AuthController::class,'registerUser']);
     Route::post('login',[\App\Http\Controllers\AuthController::class,'login']);
     Route::post('logout',[\App\Http\Controllers\AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class,'refresh']);
