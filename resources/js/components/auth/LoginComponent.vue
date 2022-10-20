@@ -10,16 +10,16 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" @submit.prevent="login">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                                        <input type="email" v-model="form.email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Enter Email Address">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" v-model="form.password" class="form-control" id="exampleInputPassword" placeholder="Password">
                                     </div>
                                     <div class="form-group">
-                                        <router-link to="" class="btn btn-primary btn-block">Login</router-link>
+                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
                                     </div>
                                     <hr>
                                 </form>
@@ -43,7 +43,30 @@
 
 <script>
 export default {
-    name: "LoginComponent"
+    // name: "LoginComponent",
+    data(){
+        return{
+            form:{
+                email:null,
+                password:null,
+            }
+        }
+    },
+    methods:{
+        // login(){
+        //     // alert('done');
+        //     axios.post('/api/auth/login',this.form)
+        //         .then(response => console.log(response.data))
+        //         .catch(error => console.log(error.response.data))
+        // },
+        login(){
+            axios.post('api/auth/login',this.form).then(function(response){
+                return console.log(response.data);
+            }).catch(function (error){
+                    return console.log(error.data);
+                })
+        }
+    }
 }
 </script>
 
