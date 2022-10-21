@@ -5330,6 +5330,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _Helpers_User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Helpers/User */ "./resources/js/Helpers/User.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // name: "LoginComponent",
   data: function data() {
@@ -5349,7 +5351,8 @@ __webpack_require__.r(__webpack_exports__);
     // },
     login: function login() {
       axios.post('api/auth/login', this.form).then(function (response) {
-        return console.log(response.data);
+        // return console.log(response.data);
+        return _Helpers_User__WEBPACK_IMPORTED_MODULE_0__["default"].responseAfterLogin(response);
       })["catch"](function (error) {
         return console.log(error.data);
       });

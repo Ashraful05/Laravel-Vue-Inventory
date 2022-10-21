@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import User from "../../Helpers/User";
+
 export default {
     // name: "LoginComponent",
     data(){
@@ -61,7 +63,8 @@ export default {
         // },
         login(){
             axios.post('api/auth/login',this.form).then(function(response){
-                return console.log(response.data);
+                // return console.log(response.data);
+                return User.responseAfterLogin((response));
             }).catch(function (error){
                     return console.log(error.data);
                 })
