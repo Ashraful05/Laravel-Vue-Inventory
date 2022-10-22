@@ -40,8 +40,12 @@ class AuthController extends Controller
         ]);
         return $this->login($request);
     }
-    public function login()
+    public function login(Request $request)
     {
+        $this->validate($request,[
+            'email'=>'required|string|max:255',
+            'password'=>'required'
+        ]);
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {

@@ -14,9 +14,11 @@
                                     <div class="form-group">
                                         <input type="email" v-model="form.email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Enter Email Address">
+                                        <small class="text-danger" v-if="errors.email">{{ errors.email[0] }}</small>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" v-model="form.password" class="form-control" id="exampleInputPassword" placeholder="Password">
+                                        <small class="text-danger" v-if="errors.password">{{ errors.password[0] }}</small>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -56,7 +58,8 @@ export default {
             form:{
                 email:null,
                 password:null,
-            }
+            },
+            errors:{}
         }
     },
     methods:{
@@ -69,10 +72,20 @@ export default {
         login(){
             axios.post('api/auth/login',this.form)
                 .then(response => {
+                    this.$router.push({name:'home'})
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Signed in successfully'
+                    })
                    User.responseAfterLogin(response)
-                   this.$router.push({name:'home'})
                 })
-                .catch();
+                .catch(error =>
+                    this.errors = error.response.data.errors,
+                    Toast.fire({
+                        icon:'warning',
+                        title: "Invalid email or password!"
+                    })
+                );
 
         }
     }
