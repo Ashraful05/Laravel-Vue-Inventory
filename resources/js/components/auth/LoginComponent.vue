@@ -46,6 +46,11 @@ import User from "../../Helpers/User";
 
 export default {
     // name: "LoginComponent",
+    created() {
+      if(User.loggedIn()){
+          this.$router.push({name: 'home'})
+      }
+    },
     data(){
         return{
             form:{
@@ -62,12 +67,13 @@ export default {
         //         .catch(error => console.log(error.response.data))
         // },
         login(){
-            axios.post('api/auth/login',this.form).then(function(response){
-                // return console.log(response.data);
-                return User.responseAfterLogin((response));
-            }).catch(function (error){
-                    return console.log(error.data);
+            axios.post('api/auth/login',this.form)
+                .then(response => {
+                   User.responseAfterLogin(response)
+                   this.$router.push({name:'home'})
                 })
+                .catch();
+
         }
     }
 }
