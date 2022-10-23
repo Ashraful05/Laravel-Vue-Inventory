@@ -36,7 +36,7 @@
 
 <script>
 export default {
-    name: "LoginComponent"
+    name: "ForgotPasswordComponent"
 }
 </script>
 

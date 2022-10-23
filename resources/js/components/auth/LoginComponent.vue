@@ -47,7 +47,7 @@
 import User from "../../Helpers/User";
 
 export default {
-    // name: "LoginComponent",
+    name: "LoginComponent",
     created() {
       if(User.loggedIn()){
           this.$router.push({name: 'home'})

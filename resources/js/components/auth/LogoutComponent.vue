@@ -4,7 +4,16 @@
 
 <script>
 export default {
-    name: "LogoutComponent"
+    name: "LogoutComponent",
+    created() {
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        Toast.fire({
+            icon:'success',
+            title:'Logged out Successfully!!'
+        })
+        this.$router.push({name:'login'})
+    }
 }
 </script>
 
