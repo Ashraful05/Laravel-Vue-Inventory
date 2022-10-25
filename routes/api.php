@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -22,4 +23,7 @@ Route::group([
     Route::post('logout',[AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class,'refresh']);
     Route::post('me',[AuthController::class,'me']);
+
 });
+
+Route::apiResource('/employee',EmployeeController::class);

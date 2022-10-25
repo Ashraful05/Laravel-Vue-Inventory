@@ -26,9 +26,18 @@ class Notification{
     error(){
         new Noty({
             type:"error",
-            layout:"bottomLeft",
+            layout:"topRight",
             text:"Something went wrong!!!",
             timeout:3000
+        }).show();
+    }
+    imageValidation()
+    {
+        new Noty({
+           type: 'error',
+           layout: 'topRight',
+           text: "Upload image less than 5 MB!!",
+            timeout: 3000
         }).show();
     }
 }
