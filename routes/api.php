@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Api\EmployeeController;
+
+
+use App\Http\Controllers\api\EmployeeController;
+use App\Http\Controllers\AuthController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -26,4 +30,6 @@ Route::group([
 
 });
 
-Route::apiResource('/employee',EmployeeController::class);
+//Route::apiResource('employee',EmployeeController::class);
+
+Route::apiResource('employee',EmployeeController::class);

@@ -5529,6 +5529,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     onFileSelected: function onFileSelected(event) {
       var _this = this;
+      // alert('hello');
       var file = event.target.files[0];
       if (file.size > 5243850) {
         Notification.imageValidation();
@@ -5544,14 +5545,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     addEmployee: function addEmployee() {
       var _this2 = this;
-      axios.post('api/auth/employee', this.form).then(function () {
+      // alert('hello');
+      axios.post('/api/employee', this.form).then(function () {
         _this2.$router.push({
-          name: 'all_employee'
+          path: '/all_employee'
         });
+        // this.$router.push({name:'/all_employee'})
         Notification.success();
       })["catch"](function (error) {
         return _this2.errors = error.response.data.errors;
-      })["catch"](Notification.error());
+      }, Notification.error());
+      // .catch(
+      //     Notification.error()
+      // )
     }
   }
 });
@@ -6809,7 +6815,7 @@ var render = function render() {
   }, [_c("img", {
     staticStyle: {
       height: "50px",
-      width: "280px"
+      width: "220px"
     },
     attrs: {
       src: _vm.form.photo

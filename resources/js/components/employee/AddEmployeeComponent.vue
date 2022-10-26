@@ -65,7 +65,7 @@
                                                     <small class="text-danger" v-if="errors.photo">{{ errors.photo[0]}}</small>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <img :src="form.photo" style="height:50px;width:280px;">
+                                                    <img :src="form.photo" style="height:50px;width:220px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -111,6 +111,7 @@ export default {
     methods:{
         onFileSelected(event)
         {
+            // alert('hello');
             let file = event.target.files[0];
             if(file.size > 5243850){
                 Notification.imageValidation();
@@ -126,15 +127,19 @@ export default {
 
         },
         addEmployee(){
-            axios.post('api/auth/employee',this.form)
+            // alert('hello');
+            axios.post('/api/employee',this.form)
                 .then(() => {
-                    this.$router.push({name:'all_employee'})
+                    this.$router.push({path:'/all_employee'})
+                    // this.$router.push({name:'/all_employee'})
                     Notification.success()
                 })
-                .catch(error => this.errors = error.response.data.errors)
-                .catch(
+                .catch(error => this.errors = error.response.data.errors,
                     Notification.error()
                 )
+                // .catch(
+                //     Notification.error()
+                // )
         }
     }
 
