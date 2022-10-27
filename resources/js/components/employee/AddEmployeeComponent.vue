@@ -135,7 +135,7 @@ export default {
                     Notification.success()
                 })
                 .catch(error => this.errors = error.response.data.errors,
-                    Notification.error()
+                    // Notification.error()
                 )
                 // .catch(
                 //     Notification.error()

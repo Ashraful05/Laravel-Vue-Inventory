@@ -49,6 +49,7 @@ class EmployeeController extends Controller
             $sub = substr($request->photo,0,$position);
             $image_exist = explode('/',$sub)[1];
             $name = time().".".$image_exist;
+
             $image = Image::make($request->photo)->resize(240,200);
             $uploadPath = 'images/employee/';
             $imageUrl = $uploadPath.$name;
