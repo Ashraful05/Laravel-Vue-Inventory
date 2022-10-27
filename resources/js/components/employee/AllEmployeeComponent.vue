@@ -34,7 +34,7 @@
                                 <td>{{ employee.joining_date }}</td>
                                 <td>
                                     <router-link to="" class="btn btn-sm btn-primary">Edit</router-link>
-                                    <router-link to="" class="btn btn-sm btn-danger">Delete</router-link>
+                                    <a @click="deleteEmployee(employee.id)" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     name: "AllEmployeeComponent",
     created(){
@@ -73,6 +75,34 @@ export default {
            axios.get('api/employee')
                .then( ({data}) => (this.employees = data) )
                .catch()
+        },
+        deleteEmployee(id){
+            Swal.fire({
+                title: 'Are you sure to delete?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete('/api/employee/'+id)
+                        .then( () => {
+                         this.employees = this.employees.filter(employee => {
+                             return employee.id != id
+                         })
+                        })
+                        .catch( ()=>{
+                            this.$router.push({name:'all_employee'})
+                        } )
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
         }
     },
     created(){
