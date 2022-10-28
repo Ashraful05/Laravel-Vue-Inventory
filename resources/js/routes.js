@@ -7,6 +7,7 @@ import AddEmployeeComponent from "./components/employee/AddEmployeeComponent";
 import AllEmployeeComponent from "./components/employee/AllEmployeeComponent";
 import AddSupplierComponent from "./components/supplier/AddSupplierComponent";
 import AllSupplierComponent from "./components/supplier/AllSupplierComponent";
+import EditEmployeeComponent from "./components/employee/EditEmployeeComponent";
 
 
 export const routes = [
@@ -19,6 +20,7 @@ export const routes = [
     //employee route...
     {path: '/add_employee', component: AddEmployeeComponent, name: 'add_employee'},
     {path: '/all_employee',component: AllEmployeeComponent, name: 'all_employee'},
+    {path: '/edit_employee/:id', component: EditEmployeeComponent, name: 'edit_employee'},
 
     //supplier route..
     {path: '/add_supplier', component: AddSupplierComponent, name: 'add_supplier'},
