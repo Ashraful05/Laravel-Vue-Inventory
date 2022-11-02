@@ -14,7 +14,8 @@
                                         <h1 class="h4 text-gray-900 mb-4">Edit Employee</h1>
                                         <hr>
                                     </div>
-                                    <form class="user" @submit.prevent="addEmployee" enctype="multipart/form-data">
+                                    <form class="user" @submit.prevent="updateEmployee" enctype="multipart/form-data">
+
                                         <div class="form-group">
                                             <div class="form-row">
                                                 <div class="col-md-4">
@@ -65,12 +66,12 @@
                                                     <small class="text-danger" v-if="errors.photo">{{ errors.photo[0]}}</small>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <img :src="form.photo" style="height:50px;width:220px;">
+                                                    <img :src="form.photo" style="height:50px;width:50px;" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Add Employee</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Update Employee</button>
                                         </div>
                                         <hr>
                                     </form>
@@ -86,6 +87,7 @@
 </template>
 
 <script>
+
 export default {
     name: "EditEmployeeComponent",
     created() {
@@ -96,13 +98,14 @@ export default {
     data(){
         return{
             form:{
-                name:null,
-                email:null,
-                nid:null,
-                salary:null,
-                address:null,
-                joining_date:null,
-                photo:null,
+                name:'',
+                email:'',
+                nid:'',
+                salary:'',
+                address:'',
+                joining_date:'',
+                photo:'',
+                newphoto:'',
             },
             errors:{}
         }
@@ -124,18 +127,19 @@ export default {
                 // console.log(event);
                 let reader = new FileReader();
                 reader.onload = event =>{
-                    this.form.photo = event.target.result
-                    console.log(event.target.result);
+                    this.form.newphoto = event.target.result
+                    // console.log(event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
 
         },
-        addEmployee(){
+        updateEmployee(){
             // alert('hello');
-            axios.post('/api/employee',this.form)
+            let id = this.$route.params.id
+            axios.patch('/api/employee/'+id, this.form)
                 .then(() => {
-                    this.$router.push({path:'/all_employee'})
+                    this.$router.push({name:'all_employee'})
                     // this.$router.push({name:'/all_employee'})
                     Notification.success()
                 })

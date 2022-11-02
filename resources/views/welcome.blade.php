@@ -49,7 +49,6 @@
 
                            <router-link class="collapse-item" to="/add_employee">Add Employee</router-link>
                            <router-link class="collapse-item" to="/all_employee">All Employee</router-link>
-
                        </div>
                    </div>
                </li>
@@ -62,9 +61,8 @@
                    <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                        <div class="bg-white py-2 collapse-inner rounded">
 
-                           <router-link class="collapse-item" to="add_supplier">Add Supplier</router-link>
-                           <router-link class="collapse-item" to="all_supplier">All Supplier</router-link>
-
+                           <router-link class="collapse-item" to="/add_supplier">Add Supplier</router-link>
+                           <router-link class="collapse-item" to="/all_supplier">All Supplier</router-link>
                        </div>
                    </div>
                </li>

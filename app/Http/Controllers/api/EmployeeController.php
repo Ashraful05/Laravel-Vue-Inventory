@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class EmployeeController extends Controller
@@ -121,7 +122,45 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        $data['phone']=$request->phone;
+        $data['nid'] = $request->nid;
+        $data['salary']=$request->salary;
+        $data['joining_date']=$request->joining_date;
+        $data['address'] = $request->address;
+        $newImage = $request->newphoto;
+
+        if($newImage){
+            $position = strpos($newImage,';');
+            $sub = substr($newImage,0,$position);
+            $ext = explode('/',$sub)[1];
+
+            $name = time().".".$ext;
+            $img = Image::make($newImage)->resize(240,200);
+            $uploadPath = 'images/employee/';
+            $imageUrl = $uploadPath.$name;
+            $success = $img->save($imageUrl);
+            if($success){
+                $data['photo'] = $imageUrl;
+//                $employeeImage = DB::table('employees')->where('id',$id)->first();
+                $employeeImage = Employee::where('id',$id)->first();
+
+                $imagePath = $employeeImage->photo;
+                $unlinkImage = unlink($imagePath);
+
+//                $employee = DB::table('employees')->where('id',$id)->update($data);
+                Employee::where('id',$id)->update($data);
+            }
+        }else{
+            $oldImage = $request->photo;
+            $data['photo'] = $oldImage;
+
+//            $employee = DB::table('employees')->where('id',$id)->update($data);
+            Employee::where('id',$id)->update($data);
+        }
+
     }
 
     /**
