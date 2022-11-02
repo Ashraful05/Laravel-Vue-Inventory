@@ -90,8 +90,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier = Supplier::findOrFail($id);
-        return response()->json($supplier);
+
     }
 
     public function update(Request $request,$id)
