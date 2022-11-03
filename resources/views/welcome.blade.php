@@ -67,6 +67,20 @@
                    </div>
                </li>
                <li class="nav-item">
+                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
+                      aria-expanded="true" aria-controls="collapseBootstrap3">
+                       <i class="far fa-fw fa-window-maximize"></i>
+                       <span>Categories</span>
+                   </a>
+                   <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                       <div class="bg-white py-2 collapse-inner rounded">
+
+                           <router-link class="collapse-item" to="/add_category">Add Category</router-link>
+                           <router-link class="collapse-item" to="/all_category">All Category</router-link>
+                       </div>
+                   </div>
+               </li>
+               <li class="nav-item">
                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
                       aria-controls="collapseTable">
                        <i class="fas fa-fw fa-table"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\EmployeeController;
 use App\Http\Controllers\api\SupplierController;
 use App\Http\Controllers\AuthController;
@@ -35,3 +36,4 @@ Route::group([
 
 Route::apiResource('employee',EmployeeController::class);
 Route::apiResource('supplier',SupplierController::class);
+Route::apiResource('category',CategoryController::class);
